@@ -1,0 +1,21 @@
+{
+  "fitbit": {
+    "appUUID": "8efdf4b4-9fc3-427c-836e-b3d094f97a3b",
+    "appType": "clockface",
+    "appDisplayName": "senssor",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [
+      "access_internet",
+      "run_background",
+      "access_activity",
+      "access_user_profile",
+      "access_heart_rate"
+    ],
+    "i18n": {
+      "en": {
+        "name": "senssor"
+      }
+    }
+  }
+}

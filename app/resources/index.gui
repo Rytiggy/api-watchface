@@ -1,0 +1,73 @@
+
+
+<svg>
+<!--   <text id="accel-label" class="sensor-label" x="50%" y="30">accelerometer</text> -->
+<!--   <text id="accel-data" class="sensor-data" x="50%" y="65">{ ... }</text> -->
+ 
+<!--    <text id="bar-label" class="sensor-label" x="50%" y="110">barometer</text> -->
+<!--   <text id="bar-data" class="sensor-data" x="50%" y="145">{ ... }</text> -->
+ 
+<!--   <text id="hrm-label" class="sensor-label" x="50%" y="190">heart rate</text> --> 
+  
+  
+   <g id="graph" fill="white" >
+     
+      <circle class="graph-point" cx="70%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="65%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="60%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="55%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="50%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="45%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="40%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="35%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="30%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="25%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="20%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="15%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="10%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="5%" cy="-10" r="3"/>
+      <circle class="graph-point" cx="1%" cy="-10" r="3"/>   
+
+   </g>
+  
+  <line y1="0" y2="68%" x1="80%" x2="80%" fill="white" stroke-width="1" />
+  
+  <text id="graph-data" class="sensor-data graph-data" x="91%" y="40"></text>
+  
+  <text class="sensor-data graph-data-time-left" x="91%" y="54">min ago</text> 
+  <text id="minutes" class="sensor-data graph-data-time-left" x="87%" y="72">00</text> 
+  <text class="sensor-data graph-data-time-left" x="91%" y="70">:</text>
+  <text id="seconds" class="sensor-data graph-data-time-left" x="95%" y="72">00</text>
+
+  
+  <text class="sensor-data graph-data-range" x="75%" y="0">200</text>
+  <text class="sensor-data graph-data-range" x="75%" y="25">175</text>
+  <text class="sensor-data graph-data-range" x="75%" y="50">150</text>
+  <text class="sensor-data graph-data-range" x="75%" y="75">125</text>
+  <text class="sensor-data graph-data-range" x="75%" y="100">100</text>
+  <text class="sensor-data graph-data-range" x="76%" y="125">75</text>
+  <text class="sensor-data graph-data-range" x="76%" y="150">50</text>
+
+   <line x1="0" x2="80%" y1="55" y2="55" fill="#a27b27" stroke-width="1" />
+   <line x1="0" x2="80%" y1="130" y2="130" fill="#a27b27" stroke-width="1" />
+  
+  
+  <line x1="0" x2="100%" y1="68%" y2="68%" fill="white" stroke-width="1" />
+  
+  <circle cx="9.5%" cy="84%" r="25" fill="#00bcd4"/>
+  <text id='step-count' class="sensor-data" x="9%" y="88.5%">000</text>
+  
+  <circle cx="25%" cy="84%" r="25" fill="#8bc34a"/>
+  <text  class="sensor-data" x="42%" y="89%"></text>
+  
+  <circle cx="41.5%" cy="84%" r="25" fill="#ef5350"/>
+  <text id="hrm-data" class="sensor-data" x="41%" y="88%"></text>
+  
+  <text id="time-data" class="time" x="52%" y="95%">00:00</text>
+  
+  
+
+</svg>
+
+
+

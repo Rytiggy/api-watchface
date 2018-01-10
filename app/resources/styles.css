@@ -1,0 +1,44 @@
+
+
+
+.sensor-label {
+  font-family: System-Regular;
+  fill: white;
+  text-anchor: middle;
+  text-length: 32;
+}
+
+.sensor-data {
+  font-family: System-Light;
+  fill: white;
+  text-anchor: middle;
+  text-length: 65;
+}
+
+.time { 
+  font-family: System-Light;
+  fill: white;
+  text-length: 65;
+  font-size:70;
+}
+
+.graph-data {
+  font-family: System-Light;
+  fill: white;
+  text-length: 65;
+  font-size:40;
+}
+
+.graph-data-time-left {
+  font-family: System-Light;
+  fill: white;
+  text-length: 65;
+  font-size:20;
+}
+
+.graph-data-range {
+  font-family: System-Light;
+  fill: gainsboro;
+  text-length: 15;
+  font-size:18;
+}
