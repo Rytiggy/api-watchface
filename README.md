@@ -1,3 +1,6 @@
+Notice:
+Please keep in mind that this is a very early stage of this watchface and updates will come.  
+
 # api-watchface
 Fitbit Ionic watch face for viewing and displaying points on a graph. 
 
