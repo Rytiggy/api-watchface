@@ -5,7 +5,7 @@ console.log("Companion Started");
 
 let renderAllPoints = true
 let url = null;
-
+let BgDataType = false;
   // Message socket opens
 messaging.peerSocket.onopen = () => {
 
@@ -64,7 +64,7 @@ const test = () => {
 // A user changes settings
 settingsStorage.onchange  = evt => {
   console.log(evt.key)
-  if(evt.key === "text") {
+  if(evt.key === "restURL") {
   console.log('REST URL RECIEVED')    
     let data = {
       key: evt.key,
@@ -74,31 +74,63 @@ settingsStorage.onchange  = evt => {
     test()
     renderAllPoints = true;
   }
-  // sendVal(data);
+  // sendVal(data)
+  
+  if(evt.key === "dataType" ) {
+     console.log('Data type was selected ')
+     BgDataType = evt.newValue;
+     let data = {
+        key: evt.key,
+        newValue: evt.newValue
+      };
+    restoreSettings();
+    test()
+
+  }
+  
+  if(evt.key === "refreshWatch") {
+      console.log('refreshWatch')    
+    let data = {
+      key: evt.key,
+      newValue: evt.newValue
+    };
+    restoreSettings();
+    test()
+    renderAllPoints = true;
+  }
   console.log('key pressed')
 };
 
 // Restore any previously saved settings and send to the device
 function restoreSettings() {
   for (let index = 0; index < settingsStorage.length; index++) {
+
     let key = settingsStorage.key(index);
-    if (key) {
       let data = {
         key: key,
-        newValue: settingsStorage.getItem(key)
+        newValue: settingsStorage.getItem(key),
+        dataType: true
       };
-      if(JSON.parse(settingsStorage.getItem(key)).name) {
-           console.log(JSON.parse(settingsStorage.getItem(key)).name)
-           url = JSON.parse(settingsStorage.getItem(key)).name;
+      
+
+      if(key === "restURL") {
+        console.log('restURL')
+        console.log(JSON.parse(settingsStorage.getItem(key)).name)
+        url = JSON.parse(settingsStorage.getItem(key)).name;
+      }else if(key === "dataType") {
+        console.log('dataType')
+        console.log(JSON.parse(settingsStorage.getItem(key)))
+        BgDataType = JSON.parse(settingsStorage.getItem(key))
       }
-    }
   }
 }
-
 // Send data to device using Messaging API
 function sendVal(data) {
   console.log('in sendVal')
-  //console.log(JSON.parse(data).length) 
+
+    // send BG Data type first 
+    messaging.peerSocket.send( '{"type":'+BgDataType+'}'); 
+  
 
   if(renderAllPoints) {
     for(let index = 13; index >= 0; index--) {
