@@ -4,15 +4,22 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Watch Settings</Text>}>
         <Toggle
-          settingsKey="toggle"
+          settingsKey="refreshWatch"
           label="watch not updating?"
         />
+        
+       <Toggle
+          settingsKey="dataType"
+          label="[ mmol/l ] Or [ mg/dl ]"
+        />
+  
+              
   
               
         <TextInput
           settingsKey="url"
           label="REST api url"
-          settingsKey="text"
+          settingsKey="restURL"
         />
 
       </Section>

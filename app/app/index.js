@@ -29,6 +29,7 @@ var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
 
+let bgType = true;
 
 
 function setTime() {
@@ -47,16 +48,31 @@ function pad(val) {
 }
 
 
-
+function mmol( bg ) {
+    let mmolBG = Math.round( (0.0555 * bg) * 10 ) / 10;
+  return mmolBG;
+}
 
 
 
 // // Message is received from phone 
-messaging.peerSocket.onmessage = evt => {
+  messaging.peerSocket.onmessage = evt => {
   console.log('Message is received from phone ')
-  console.log(JSON.stringify(evt.data))
-  console.log(evt.data[evt.data.type])
-  updategraph(evt.data[evt.data.type])
+  try{
+    console.log( JSON.parse(evt.data).type)
+    bgType = JSON.parse(evt.data).type
+  }catch(e){}
+   // bgType = evt.data[evt.data.type];
+//     if(bgType) {
+    if(evt.data[evt.data.type]) {       
+      updategraph(evt.data[evt.data.type])
+    }
+
+//     } else {
+//          updategraph(mmol(evt.data[evt.data.type]))
+
+//     }
+  
 };
 
 // Message socket opens
@@ -73,8 +89,12 @@ messaging.peerSocket.close = () => {
 function updategraph(graphPoint){
   let graphPoints = document.getElementsByClassName('graph-point'); 
   console.log('updategraph')
-  console.log(JSON.stringify(graphPoint))
-  graphData.text = graphPoint;
+  console.log(JSON.stringify(graphPoint))  
+  if(bgType) {
+    graphData.text = graphPoint;
+  } else {
+    graphData.text = mmol(graphPoint);  
+  }
   points.push(graphPoint)  
 
 
