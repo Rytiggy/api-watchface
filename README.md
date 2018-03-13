@@ -36,8 +36,8 @@ Fitbit Ionic watch face for viewing and displaying points on a graph.
 [Nightscount setup](https://github.com/pazaan/600SeriesAndroidUploader/wiki/Android-Uploader-Installation)
 2. set up xdrip on your phone following the below instuctions and in xdrip go to settings/inner-app settings/ and enable broadcast locally .<br>
 [Xdrip setup](https://github.com/NightscoutFoundation/xDrip/releases)
-3. Once you have your end point set it should be https://127.0.0.1:17580/svg.json and you should be able to go to it on your phone. confirm that you can see json in your phones web browser.
-4. Go into the Fitbit companion app and go into settings, and enter https://127.0.0.1:17580/svg.json into the REST API url
+3. Once you have your end point set it should be https://127.0.0.1:17580/sgv.json and you should be able to go to it on your phone. confirm that you can see json in your phones web browser.
+4. Go into the Fitbit companion app and go into settings, and enter https://127.0.0.1:17580/sgv.json into the REST API url
 5. After that you are good to go, you should start seeing readings on the graph with in 5-10 minutes 
 ![companion app settings](https://image.ibb.co/maTLE6/26781740_10210968578590514_156639173_o.png)
 
