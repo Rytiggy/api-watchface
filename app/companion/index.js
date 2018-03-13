@@ -35,9 +35,10 @@ const test = () => {
       })
     })
       .then(response => {
-        console.log('Get Data On Phone');
+        console.log('Get Data On Phone => response');
         response.text().then(data => {
           console.log('fetched Data from API');
+          console.log(data)
           sendVal(data);
 
 
@@ -84,7 +85,7 @@ settingsStorage.onchange  = evt => {
         newValue: evt.newValue
       };
     restoreSettings();
-    test()
+   // test()
 
   }
   
@@ -127,30 +128,23 @@ function restoreSettings() {
 // Send data to device using Messaging API
 function sendVal(data) {
   console.log('in sendVal')
-
+  console.log( JSON.parse(data).bgs[0])
+  console.log( JSON.parse(data).bgs.length)
     // send BG Data type first 
-    messaging.peerSocket.send( '{"type":'+BgDataType+'}'); 
-  
-
-  if(renderAllPoints) {
-    for(let index = 13; index >= 0; index--) {
-      
-      console.log( JSON.parse(data)[index])
-      if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-          console.log('Sending Values')
-          messaging.peerSocket.send(JSON.parse(data)[index]); 
-        
+  if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
+    // messaging.peerSocket.send( '{"type":'+BgDataType+'}');
+    
+    if(renderAllPoints) {
+      for(let index =  (JSON.parse(data).bgs.length-1) ; index >= 0; index--) {
+        console.log( JSON.parse(data))//[index])
+        console.log('Sending Values')
+        messaging.peerSocket.send(JSON.parse(data).bgs[index]); 
       }
-      
-    }
       renderAllPoints = false;
-
-  } else {
-        if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-            messaging.peerSocket.send(JSON.parse(data)[0]); 
-        }
+    } else {
+        messaging.peerSocket.send(JSON.parse(data).bgs[0]); 
+    }
   }
-
 }
 
 setInterval(test,  300000); // test again 5 min later

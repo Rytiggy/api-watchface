@@ -18,6 +18,9 @@ let hrmData = document.getElementById("hrm-data");
 let time = document.getElementById("time-data");
 let steps = document.getElementById("step-count");
 
+let direction = document.getElementById("direction");
+
+
 let accel = new Accelerometer();
 let bar = new Barometer();
 let hrm = new HeartRateSensor();
@@ -25,17 +28,28 @@ let hrm = new HeartRateSensor();
 var count = 14;
 var points = [220,220,220,220,220,220,220,220,220,220,220,220,220,220];
 
+//graph-data-range
+let graphRange = [50,75,100,125,150,175,200]
+
 var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 var totalSeconds = 0;
 
 let bgType = true;
 
+let ERRORNoData = document.getElementById("ERROR-no-data");
 
 function setTime() {
   totalSeconds++;
   secondsLabel.text = pad(totalSeconds % 60);
   minutesLabel.text = pad(parseInt(totalSeconds / 60));
+  
+  if (pad(parseInt(totalSeconds / 60)) >= "10") {
+    ERRORNoData.y = 92;
+  } else {
+    ERRORNoData.y = 300;
+  }
+  
 }
 
 function pad(val) {
@@ -57,22 +71,16 @@ function mmol( bg ) {
 
 // // Message is received from phone 
   messaging.peerSocket.onmessage = evt => {
-  console.log('Message is received from phone ')
+  console.log('Message is received from phone')
   try{
-    console.log( JSON.parse(evt.data).type)
     bgType = JSON.parse(evt.data).type
+    console.log('BGTYPE SET', evt.data)
+    console.log(bgType)
+
   }catch(e){}
-   // bgType = evt.data[evt.data.type];
-//     if(bgType) {
-    if(evt.data[evt.data.type]) {       
-      updategraph(evt.data[evt.data.type])
-    }
 
-//     } else {
-//          updategraph(mmol(evt.data[evt.data.type]))
+  updategraph(evt.data)
 
-//     }
-  
 };
 
 // Message socket opens
@@ -86,16 +94,22 @@ messaging.peerSocket.close = () => {
 };
 
 
-function updategraph(graphPoint){
+function updategraph(data){
   let graphPoints = document.getElementsByClassName('graph-point'); 
+ // let graphRangeClass = document.getElementsByClassName('graph-data-range'); 
   console.log('updategraph')
-  console.log(JSON.stringify(graphPoint))  
-  if(bgType) {
-    graphData.text = graphPoint;
-  } else {
-    graphData.text = mmol(graphPoint);  
+  console.log(JSON.stringify(data))  
+  
+  graphData.text = data.sgv;
+  points.push(data.sgv)
+  // check the direction of bgs 
+  if (data.direction === 'Flat') {
+    direction.text = '⬆'
+    direction.text = '⬇'
+  } 
+  else if (data.direction === 'Flat') {
+    
   }
-  points.push(graphPoint)  
 
 
   graphPoints[0].cy = (200 - points[14]) - 5;
@@ -190,7 +204,7 @@ function refreshData() {
     
   
   hrmData.text = data.hrm.heartRate;
-  steps.text =(stepCount || 0)
+  steps.text =( stepCount || 0)
    
 }
 

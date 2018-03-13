@@ -39,6 +39,15 @@
   <text class="sensor-data graph-data-time-left" x="91%" y="70">:</text>
   <text id="seconds" class="sensor-data graph-data-time-left" x="95%" y="72">00</text>
 
+  <text id="ERROR-no-data" class="sensor-data graph-data-time-left" x="91%" y="300" fill="red">No Data</text> 
+
+  <text id="seconds" class="sensor-data graph-data-time-left" x="95%" y="92"></text>
+  
+  <text id="direction" class="sensor-data graph-data-direction" x="91%" y="130" fill="white"></text> 
+
+ 
+
+  
   
   <text class="sensor-data graph-data-range" x="75%" y="0">200</text>
   <text class="sensor-data graph-data-range" x="75%" y="25">175</text>

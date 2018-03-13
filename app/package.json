@@ -2,7 +2,7 @@
   "fitbit": {
     "appUUID": "8efdf4b4-9fc3-427c-836e-b3d094f97a3b",
     "appType": "clockface",
-    "appDisplayName": "senssor",
+    "appDisplayName": "Sensor",
     "iconFile": "resources/icon.png",
     "wipeColor": "#607d8b",
     "requestedPermissions": [
@@ -12,9 +12,12 @@
       "access_user_profile",
       "access_heart_rate"
     ],
+    "buildTargets": [
+      "higgs"
+    ],
     "i18n": {
       "en": {
-        "name": "senssor"
+        "name": "Sensor"
       }
     }
   }
