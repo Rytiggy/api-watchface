@@ -16,6 +16,7 @@ Please keep in mind that this is a very early stage of this watchface and update
 Fitbit Ionic watch face for viewing and displaying points on a graph. 
 
 ![watch face image](https://image.ibb.co/j1MTvH/senssor4_screenshot_3.png)
+![High bg watch face image](https://image.ibb.co/hVFXqH/highalert.png)
 
 
 # Requirments
