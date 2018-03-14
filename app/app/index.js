@@ -125,15 +125,19 @@ function updategraph(data){
   delta.text = Math.round( data.delta ) + " mg/dl"
   
   // temp fix while direction is not working
-  if(data.delta <= 3 || data.delta <= -3){
+  if(data.delta <= 3 || data.delta >= -3){
     data.direction = 'Flat'
-  }else if(data.delta > 3 || data.delta < 7) {
+  } 
+  if(data.delta > 3) {
     data.direction = 'FortyFiveUp'
-  }else if(data.delta > 7) {
+  }
+  if(data.delta >= 7) {
     data.direction = 'SingleUp'
-  }else if(data.delta > -3 || data.delta < -7) {
+  }
+  if(data.delta < -3) {
     data.direction = 'FortyFiveDown'
-  }else if(data.delta > -7) {
+  }
+  if(data.delta <= -7) {
     data.direction = 'SingleDown'
   }
   
