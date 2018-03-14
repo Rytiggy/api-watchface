@@ -41,16 +41,26 @@ let bgType = true;
 
 let ERRORNoData = document.getElementById("ERROR-no-data");
 
-function setTime() {
+let gdr1 = document.getElementById("gdr1")
+let gdr2 = document.getElementById("gdr2")
+let gdr3 = document.getElementById("gdr3")
+let gdr4 = document.getElementById("gdr4")
+let gdr5 = document.getElementById("gdr5")
+let gdr6 = document.getElementById("gdr6")
+let gdr7 = document.getElementById("gdr7")
+
+let targetRangeTop = document.getElementById("target-range-top")
+let targetRangeBottom = document.getElementById("target-range-bottom")
+
+
+
+let multiplier = 0
+let hasApplied = false
+
+function addSecond() {
   totalSeconds++;
   secondsLabel.text = pad(totalSeconds % 60);
   minutesLabel.text = pad(parseInt(totalSeconds / 60));
-  
-  if (pad(parseInt(totalSeconds / 60)) >= "10") {
-    ERRORNoData.y = 92;
-  } else {
-    ERRORNoData.y = 300;
-  }
   
 }
 
@@ -80,7 +90,16 @@ function mmol( bg ) {
     console.log(bgType)
 
   }catch(e){}
-
+    
+  //default graph data range 
+  gdr1.text = 200
+  gdr2.text = 175   
+  gdr3.text = 150 
+  gdr4.text = 125   
+  gdr5.text = 100   
+  gdr6.text = 75   
+  gdr7.text = 50 
+    
   updategraph(evt.data)
 
 };
@@ -104,22 +123,49 @@ function updategraph(data){
   
   graphData.text = data.sgv;
   points.push(data.sgv)
-
-  graphPoints[0].cy = (200 - points[14]) - 5;
-  graphPoints[1].cy = (200 - points[13]) - 5;
-  graphPoints[2].cy = (200 - points[12]) - 5;
-  graphPoints[3].cy = (200 - points[11]) - 5;
-  graphPoints[4].cy = (200 - points[10]) - 5;
-  graphPoints[5].cy = (200 - points[9]) - 5;
-  graphPoints[6].cy = (200 - points[8]) - 5;
-  graphPoints[7].cy = (200 - points[7]) - 5;
-  graphPoints[8].cy = (200 - points[6]) - 5;
-  graphPoints[9].cy = (200 - points[5]) - 5;
-  graphPoints[10].cy = (200 - points[4]) - 5;
-  graphPoints[11].cy = (200 - points[3]) - 5;
-  graphPoints[12].cy = (200 - points[2]) - 5;
-  graphPoints[13].cy = (200 - points[1]) - 5;
-  graphPoints[14].cy = (200 - points[0]) - 5;
+   
+  //check if over 180 bg 
+  if(points[14] > 180) {
+    graphData.style.fill = "#ef5350"
+    targetRangeTop.style.fill = "transparent"
+    targetRangeBottom.style.fill = "#ef5350"
+    targetRangeBottom.y1=107
+    targetRangeBottom.y2=107
+    
+    multiplier = 50
+    console.log('change Multiplier')
+    gdr1.text = parseInt(gdr1.text) + multiplier  
+    gdr2.text = parseInt(gdr2.text) + multiplier  
+    gdr3.text = parseInt(gdr3.text) + multiplier  
+    gdr4.text = parseInt(gdr4.text) + multiplier  
+    gdr5.text = parseInt(gdr5.text) + multiplier  
+    gdr6.text = parseInt(gdr6.text) + multiplier  
+    gdr7.text = parseInt(gdr7.text) + multiplier  
+  } else if (points[14] < 180 ) {
+    graphData.style.fill = "white"
+    multiplier = 0
+    targetRangeTop.style.fill = "#a27b27"
+    targetRangeBottom.style.fill = "#a27b27"
+    targetRangeBottom.y1=130
+    targetRangeBottom.y2=130
+  }
+ 
+  
+  graphPoints[0].cy = (200 - points[14]) - 5 + multiplier;
+  graphPoints[1].cy = (200 - points[13]) - 5 + multiplier;
+  graphPoints[2].cy = (200 - points[12]) - 5 + multiplier;
+  graphPoints[3].cy = (200 - points[11]) - 5 + multiplier;
+  graphPoints[4].cy = (200 - points[10]) - 5 + multiplier;
+  graphPoints[5].cy = (200 - points[9]) - 5 + multiplier;
+  graphPoints[6].cy = (200 - points[8]) - 5 + multiplier;
+  graphPoints[7].cy = (200 - points[7]) - 5 + multiplier;
+  graphPoints[8].cy = (200 - points[6]) - 5 + multiplier;
+  graphPoints[9].cy = (200 - points[5]) - 5 + multiplier;
+  graphPoints[10].cy = (200 - points[4]) - 5 + multiplier;
+  graphPoints[11].cy = (200 - points[3]) - 5 + multiplier;
+  graphPoints[12].cy = (200 - points[2]) - 5 + multiplier;
+  graphPoints[13].cy = (200 - points[1]) - 5 + multiplier;
+  graphPoints[14].cy = (200 - points[0]) - 5 + multiplier;
 
   //set the delta value 
   delta.text = Math.round( data.delta ) + " mg/dl"
@@ -193,8 +239,22 @@ function updategraph(data){
   console.log(JSON.stringify(points))
   points.shift()
   totalSeconds = 0;
-  setTime();
-    
+  addSecond();  
+  
+  //check if time is over 5 mins
+  console.log('date time check ')
+  let currentTime = new Date();
+  let lastBGTime = new Date(data.dateString); // The 0 there is the key, which sets the date to the epoch
+  
+  console.log(currentTime.toISOString())//.
+  console.log((data.dateString)) //.getUTCMinutes())
+
+
+  if (pad(parseInt(totalSeconds / 60)) >= "10") {
+    ERRORNoData.y = 92;
+  } else {
+    ERRORNoData.y = 300;
+  }
 
 }
 
@@ -220,7 +280,7 @@ hrm.start();
   };
  
 function refreshData() {
-   setTime();
+   addSecond();
    data = {
     accel: {
       x: accel.x ? accel.x.toFixed(1) : 0,

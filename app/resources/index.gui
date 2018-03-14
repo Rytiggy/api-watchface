@@ -8,6 +8,8 @@
 <!--   <text id="bar-data" class="sensor-data" x="50%" y="145">{ ... }</text> -->
  
 <!--   <text id="hrm-label" class="sensor-label" x="50%" y="190">heart rate</text> --> 
+   <line id="target-range-top" x1="0" x2="80%" y1="55" y2="55" fill="#a27b27" stroke-width="1" />
+   <line  id="target-range-bottom" x1="0" x2="80%" y1="130" y2="130" fill="#a27b27" stroke-width="1" />
   
   
    <g id="graph" fill="white" >
@@ -46,17 +48,13 @@
   <circle id="direction-dot" cx="326" cy="100" r="3" fill="#ef5350"/>   
   
   
-  <text class="sensor-data graph-data-range" x="75%" y="0">200</text>
-  <text class="sensor-data graph-data-range" x="75%" y="25">175</text>
-  <text class="sensor-data graph-data-range" x="75%" y="50">150</text>
-  <text class="sensor-data graph-data-range" x="75%" y="75">125</text>
-  <text class="sensor-data graph-data-range" x="75%" y="100">100</text>
-  <text class="sensor-data graph-data-range" x="76%" y="125">75</text>
-  <text class="sensor-data graph-data-range" x="76%" y="150">50</text>
-
-   <line x1="0" x2="80%" y1="55" y2="55" fill="#a27b27" stroke-width="1" />
-   <line x1="0" x2="80%" y1="130" y2="130" fill="#a27b27" stroke-width="1" />
-  
+  <text id="gdr1" class="sensor-data graph-data-range" x="75%" y="0">200</text>
+  <text id="gdr2" class="sensor-data graph-data-range" x="75%" y="25">175</text>
+  <text id="gdr3" class="sensor-data graph-data-range" x="75%" y="50">150</text>
+  <text id="gdr4" class="sensor-data graph-data-range" x="75%" y="75">125</text>
+  <text id="gdr5" class="sensor-data graph-data-range" x="75%" y="100">100</text>
+  <text id="gdr6" class="sensor-data graph-data-range" x="76%" y="125">75</text>
+  <text id="gdr7" class="sensor-data graph-data-range" x="76%" y="150">50</text>
   
   <line x1="0" x2="100%" y1="68%" y2="68%" fill="white" stroke-width="1" />
   

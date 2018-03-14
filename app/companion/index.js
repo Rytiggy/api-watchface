@@ -26,7 +26,7 @@ const test = () => {
   console.log('TEST IS A CONNECTION')
   console.log(url)
   if(url) {
-    //url = url + "?count=14";
+    url = url + "?count=14";
     fetch(url,{
       method: 'GET',
       mode: 'cors',
@@ -57,6 +57,9 @@ const test = () => {
         console.log(fetchError.toString());
         console.log(fetchError.stack);
       })
+  } else {
+    url = "http://127.0.0.1:17580/sgv.json"
+    test();
   }
 };
 
@@ -128,7 +131,7 @@ function restoreSettings() {
 // Send data to device using Messaging API
 function sendVal(data) {
   console.log('in sendVal')
-  console.log( JSON.parse(data))
+  console.log(data)
     // send BG Data type first 
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     // messaging.peerSocket.send( '{"type":'+BgDataType+'}');
@@ -136,7 +139,7 @@ function sendVal(data) {
     console.log(JSON.parse(data).length)
     if(renderAllPoints) {
       for(let index = JSON.parse(data).length-1; index >= 0; index--) {
-        console.log( JSON.parse(data)[index])
+        console.log( JSON.stringify(JSON.parse(data)[index]))
         console.log('Sending Values')
         messaging.peerSocket.send(JSON.parse(data)[index]); 
       }

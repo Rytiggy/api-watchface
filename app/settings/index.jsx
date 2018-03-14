@@ -16,7 +16,7 @@ function mySettings(props) {
               
         <TextInput
           settingsKey="url"
-          label="REST api url"
+          label="REST api url defaults:http://127.0.0.1:17580/sgv.json"
           settingsKey="restURL"
         />
 
