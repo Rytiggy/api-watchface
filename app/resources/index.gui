@@ -41,12 +41,9 @@
 
   <text id="ERROR-no-data" class="sensor-data graph-data-time-left" x="91%" y="300" fill="red">No Data</text> 
 
-  <text id="seconds" class="sensor-data graph-data-time-left" x="95%" y="92"></text>
   
-  <text id="direction" class="sensor-data graph-data-direction" x="91%" y="130" fill="white"></text> 
-
- 
-
+  <line id="direction" x1="300" x2="326" y1="100" y2="100" fill="white" stroke-width="1" />
+  <circle id="direction-dot" cx="326" cy="100" r="3" fill="#ef5350"/>   
   
   
   <text class="sensor-data graph-data-range" x="75%" y="0">200</text>
@@ -74,6 +71,9 @@
   
   <text id="time-data" class="time" x="52%" y="95%">00:00</text>
   
+  <!-- this class should be generalized graph-data-range -->
+  <text id="delta" class="sensor-data graph-data-range" x="91%" y="150"></text>
+
   
 
 </svg>

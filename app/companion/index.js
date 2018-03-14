@@ -66,7 +66,7 @@ const test = () => {
 settingsStorage.onchange  = evt => {
   console.log(evt.key)
   if(evt.key === "restURL") {
-  console.log('REST URL RECIEVED')    
+    console.log('REST URL RECIEVED ')    
     let data = {
       key: evt.key,
       newValue: evt.newValue
@@ -128,21 +128,22 @@ function restoreSettings() {
 // Send data to device using Messaging API
 function sendVal(data) {
   console.log('in sendVal')
-  console.log( JSON.parse(data).bgs[0])
-  console.log( JSON.parse(data).bgs.length)
+  console.log( JSON.parse(data))
     // send BG Data type first 
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     // messaging.peerSocket.send( '{"type":'+BgDataType+'}');
-    
+    console.log('in IF of sendval ')
+    console.log(JSON.parse(data).length)
     if(renderAllPoints) {
-      for(let index =  (JSON.parse(data).bgs.length-1) ; index >= 0; index--) {
-        console.log( JSON.parse(data))//[index])
+      for(let index = JSON.parse(data).length-1; index >= 0; index--) {
+        console.log( JSON.parse(data)[index])
         console.log('Sending Values')
-        messaging.peerSocket.send(JSON.parse(data).bgs[index]); 
+        messaging.peerSocket.send(JSON.parse(data)[index]); 
       }
       renderAllPoints = false;
     } else {
-        messaging.peerSocket.send(JSON.parse(data).bgs[0]); 
+        console.log('only send one data point')
+        messaging.peerSocket.send(JSON.parse(data)[0]); 
     }
   }
 }

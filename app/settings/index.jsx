@@ -11,9 +11,7 @@ function mySettings(props) {
        <Toggle
           settingsKey="dataType"
           label="[ mmol/l ] Or [ mg/dl ]"
-        />
-  
-              
+        />  
   
               
         <TextInput

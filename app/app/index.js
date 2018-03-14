@@ -19,7 +19,9 @@ let time = document.getElementById("time-data");
 let steps = document.getElementById("step-count");
 
 let direction = document.getElementById("direction");
+let directionDot = document.getElementById("direction-dot");
 
+let delta = document.getElementById("delta");
 
 let accel = new Accelerometer();
 let bar = new Barometer();
@@ -98,19 +100,10 @@ function updategraph(data){
   let graphPoints = document.getElementsByClassName('graph-point'); 
  // let graphRangeClass = document.getElementsByClassName('graph-data-range'); 
   console.log('updategraph')
-  console.log(JSON.stringify(data))  
+  console.log(data)  
   
   graphData.text = data.sgv;
   points.push(data.sgv)
-  // check the direction of bgs 
-  if (data.direction === 'Flat') {
-    direction.text = '⬆'
-    direction.text = '⬇'
-  } 
-  else if (data.direction === 'Flat') {
-    
-  }
-
 
   graphPoints[0].cy = (200 - points[14]) - 5;
   graphPoints[1].cy = (200 - points[13]) - 5;
@@ -128,7 +121,71 @@ function updategraph(data){
   graphPoints[13].cy = (200 - points[1]) - 5;
   graphPoints[14].cy = (200 - points[0]) - 5;
 
-
+  //set the delta value 
+  delta.text = Math.round( data.delta ) + " mg/dl"
+  
+  // temp fix while direction is not working
+  if(data.delta <= 3 || data.delta <= -3){
+    data.direction = 'Flat'
+  }else if(data.delta > 3 || data.delta < 7) {
+    data.direction = 'FortyFiveUp'
+  }else if(data.delta > 7) {
+    data.direction = 'SingleUp'
+  }else if(data.delta > -3 || data.delta < -7) {
+    data.direction = 'FortyFiveDown'
+  }else if(data.delta > -7) {
+    data.direction = 'SingleDown'
+  }
+  
+  // check the direction of bgs 
+  if (data.direction === 'FortyFiveUp') {
+    direction.x1 = 300
+    direction.x2 = 326
+    
+    direction.y1 = 100
+    direction.y2 = 80
+    
+    directionDot.cx = 326
+    directionDot.cy = 80
+  } else if (data.direction === 'SingleUp') {
+    direction.x1 = 313
+    direction.x2 = 313
+  
+    direction.y1 = 100
+    direction.y2 = 130
+    
+    directionDot.cx = 313
+    directionDot.cy = 100
+  } else if (data.direction === 'FortyFiveDown') {
+    direction.x1 = 300
+    direction.x2 = 326
+    
+    direction.y1 = 100
+    direction.y2 = 120
+    
+    directionDot.cx = 326
+    directionDot.cy = 120
+  } else if (data.direction === 'SingleDown') {
+    direction.x1 = 313
+    direction.x2 = 313
+  
+    direction.y1 = 100
+    direction.y2 = 130 
+        
+    directionDot.cx = 313
+    directionDot.cy = 130
+  } else { //  if (data.direction === 'Flat')
+    direction.x1 = 300
+    direction.x2 = 326
+   
+    direction.y1 = 100    
+    direction.y2 = 100
+    
+    directionDot.cx = 326
+    directionDot.cy = 100
+    
+  }
+ 
   console.log(JSON.stringify(points))
   points.shift()
   totalSeconds = 0;
