@@ -37,7 +37,9 @@ Fitbit Ionic watch face for viewing and displaying points on a graph.
   "type":"sgv"
 }
 ```
-
+#### required endpoint data points 
+ "sgv", "delta", "direction"
+ 
 ## Software
 - [Nightscout 600 Series Android Uploader](https://github.com/pazaan/600SeriesAndroidUploader/wiki) - [Download APK](https://github.com/pazaan/600SeriesAndroidUploader/releases/)
 - [xDrip](http://stephenblackwasalreadytaken.github.io/xDrip/) - [Download APK](https://github.com/NightscoutFoundation/xDrip/releases/)
