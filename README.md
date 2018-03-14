@@ -1,5 +1,16 @@
 Notice:
 Please keep in mind that this is a very early stage of this watchface and updates will come.  
+#### Current Features:
+- Graph view of bgs over last hour and 15 mins 
+- view current bg ( updates every 5 mins )
+- Minutes sense last pull
+- Trending direction 
+- Delta value 
+- Heart rate
+- Step couter
+- Time
+
+
 
 # api-watchface
 Fitbit Ionic watch face for viewing and displaying points on a graph. 
