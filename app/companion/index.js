@@ -1,19 +1,17 @@
 import { settingsStorage } from "settings";
 import * as messaging from "messaging";
-
 console.log("Companion Started");
 
 let renderAllPoints = true
 let url = null;
 let BgDataType = false;
-  // Message socket opens
+ 
+// Message socket opens
 messaging.peerSocket.onopen = () => {
-
   console.log("Companion Socket Open");
   restoreSettings();
   renderAllPoints = true;
   test();
-
 };  
 
 // Message socket closes
@@ -23,10 +21,8 @@ messaging.peerSocket.close = () => {
 
 
 const test = () => {
-  console.log('TEST IS A CONNECTION')
-  console.log(url)
+  console.log('Test called')
   if(url) {
-    url = url + "?count=14";
     fetch(url,{
       method: 'GET',
       mode: 'cors',
@@ -88,7 +84,6 @@ settingsStorage.onchange  = evt => {
         newValue: evt.newValue
       };
     restoreSettings();
-   // test()
 
   }
   
