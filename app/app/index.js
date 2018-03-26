@@ -80,8 +80,20 @@ function mmol( bg ) {
 }
 
 
+// Message socket opens
+messaging.peerSocket.onopen = () => {
+  console.log("App Socket Open");
+};
 
-// // Message is received from phone 
+// Message socket closes
+messaging.peerSocket.close = () => {
+  console.log("App Socket Closed");
+};
+
+
+
+
+// Message is received from phone 
   messaging.peerSocket.onmessage = evt => {
   console.log('Message is received from phone')
   try{
@@ -104,23 +116,17 @@ function mmol( bg ) {
 
 };
 
-// Message socket opens
-messaging.peerSocket.onopen = () => {
-  console.log("App Socket Open");
-};
-
-// Message socket closes
-messaging.peerSocket.close = () => {
-  console.log("App Socket Closed");
-};
-
 
 function updategraph(data){
   let graphPoints = document.getElementsByClassName('graph-point'); 
  // let graphRangeClass = document.getElementsByClassName('graph-data-range'); 
   console.log('updategraph')
   console.log(data)  
-  
+  console.log(data.units_hint)  
+  if(data.units_hint === 'mmol') {
+    data.sgv = mmol(data.sgv)
+  } 
+
   graphData.text = data.sgv;
   points.push(data.sgv)
    
