@@ -1,6 +1,6 @@
  
 # Steps
-- go to [studio.fitbit.com](studio.fitbit.com) and create an account
+- go to [studio.fitbit.com](https://studio.fitbit.com/) and create an account
 - Click `new project` 
 ![click new project](https://image.ibb.co/eQsGKx/1.png "step 1")
 
