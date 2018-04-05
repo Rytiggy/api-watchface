@@ -46,6 +46,8 @@ Fitbit Ionic watch face for viewing and displaying points on a graph.
 - [xDrip](http://stephenblackwasalreadytaken.github.io/xDrip/) - [Download APK](https://github.com/NightscoutFoundation/xDrip/releases/)
 
 ## Instructions
+- how to install https://github.com/Rytiggy/api-watchface/blob/master/howto.md
+---
 1. follow the instuctions below for nightscout on your phone and in addition enable in settings/send To xDrip+ 
 [Nightscount setup](https://github.com/pazaan/600SeriesAndroidUploader/wiki/Android-Uploader-Installation)
 2. set up xdrip on your phone following the below instuctions and in xdrip go to settings/inner-app settings/ and enable broadcast locally .<br>
