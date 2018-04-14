@@ -1,3 +1,5 @@
+
+## Code has been moved to https://github.com/Rytiggy/Glance This repo is inactive. Please visit the new repo for updates! 
 Notice:
 Please keep in mind that this is a very early stage of this watchface and updates will come.  
 #### Current Features:
